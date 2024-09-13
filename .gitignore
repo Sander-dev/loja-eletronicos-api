@@ -39,3 +39,11 @@ coverage/
 out/
 tmp/
 temp/
+
+# Ignorar arquivos de dump do banco de dados
+*.sql
+*.dump
+*.bak
+
+# Ignorar pastas de configuração específicas do ambiente
+/path/to/specific/directory/
