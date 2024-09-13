@@ -16,6 +16,11 @@ npm install
 
 npm start
 
+4. Acesse a documentação da API gerada pelo Swagger em:
+
+http://localhost:3000/api-docs/
+
+
 ## Rotas da API
 
 - **POST /api/products**: Adicionar um novo produto ao estoque.
