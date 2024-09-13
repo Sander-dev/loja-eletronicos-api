@@ -47,3 +47,6 @@ temp/
 
 # Ignorar pastas de configuração específicas do ambiente
 /path/to/specific/directory/
+
+
+products/
