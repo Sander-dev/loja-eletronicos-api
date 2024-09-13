@@ -1,0 +1,41 @@
+# Dependências do Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs
+*.log
+*.log.*
+
+# Arquivos de ambiente
+.env
+.env.*.local
+
+# Cache e saída de compilação
+.cache/
+dist/
+build/
+
+# Diretórios do Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de Testes
+coverage/
+*.test.js
+*.spec.js
+
+# Outras pastas de build
+out/
+tmp/
+temp/
