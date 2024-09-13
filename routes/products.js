@@ -112,18 +112,18 @@ router.post('/products', async (req, res) => {
  *                 $ref: '#/components/schemas/Product'
  */
 router.get('/products', async (req, res) => {
-    const { category, minPrice, maxPrice, page = 1, limit = 10 } = req.query; // Obtendo filtros e parâmetros de paginação da query string
+    const { category, minPrice, maxPrice, page = 1, limit = 10 } = req.query;
   
     try {
       const allDocs = await db.allDocs({ include_docs: true });
       let products = allDocs.rows.map(row => row.doc);
   
-      // Filtragem por Categoria
+      // Filtragem
       if (category) {
         products = products.filter(product => product.category === category);
       }
   
-      // Filtragem por Faixa de Preço
+      // Filtragem
       if (minPrice) {
         products = products.filter(product => product.price >= parseFloat(minPrice));
       }
@@ -132,12 +132,10 @@ router.get('/products', async (req, res) => {
         products = products.filter(product => product.price <= parseFloat(maxPrice));
       }
   
-      // Paginação
       const startIndex = (parseInt(page) - 1) * parseInt(limit);
       const endIndex = startIndex + parseInt(limit);
       const paginatedProducts = products.slice(startIndex, endIndex);
   
-      // Resposta com produtos filtrados e paginados
       res.status(200).json({
         total: products.length,
         page: parseInt(page),
@@ -240,7 +238,6 @@ router.put('/products/:id', async (req, res) => {
   try {
     const product = await db.get(id);
     
-    // Validação de Dados
     if (!name || price === undefined || stockQuantity === undefined) {
       return res.status(400).json({ error: 'Nome, preço e quantidade em estoque são obrigatórios.' });
     }
@@ -248,7 +245,6 @@ router.put('/products/:id', async (req, res) => {
       return res.status(400).json({ error: 'O preço não pode ser negativo.' });
     }
 
-    // Atualização de Produto
     const updatedProduct = { ...product, name, price, stockQuantity, description, category };
     const response = await db.put(updatedProduct);
     res.status(200).json(response);
